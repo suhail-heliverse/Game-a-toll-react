@@ -51,7 +51,7 @@ export default function AdminView() {
     setShowSnackBar(true);
 
     if (response.status) {
-      return router.push("/");
+      window.location.reload();
     }
   };
 

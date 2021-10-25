@@ -53,8 +53,8 @@ export default function MatchView() {
 
     socket.on('end-match',()=>{
       // childRef.current.endMatch();
-      window.location.reload();
       router.push('/')
+      window.location.reload();
     })
     socket.on('update-queue',(newQueue)=>{
       const updateQueue = (JSON.parse(newQueue.queue))
