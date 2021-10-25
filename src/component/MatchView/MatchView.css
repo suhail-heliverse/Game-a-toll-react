@@ -1,0 +1,49 @@
+
+.match_view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-top: -20px;
+  background-color: black;
+  width: 100%;
+}
+
+.screen_view {
+    width: 100%;
+}
+.screen_view video {
+    height: 100vh;
+}
+
+.camera_view {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+.camera_view video {
+    height: 200px;
+    width: 300px;
+}
+
+.viewer_waiting_screen {
+  display: flex;
+  position: relative;
+}
+.waiting_list {
+  position: absolute;
+  background-color: rgba(228, 213, 213, 0.534);
+  color: white;
+
+  right: 0;
+  bottom: 0px;
+  cursor: pointer;
+  border: 2ps solid black;
+}
+.waiting_list div {
+  margin: 10px;
+}
+/* .viewer_waiting_screen:hover{
+background-color: chartreuse;
+z-index: 9999;
+} */

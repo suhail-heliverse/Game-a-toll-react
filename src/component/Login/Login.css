@@ -1,0 +1,249 @@
+.login_container {
+  display: flex;
+  flex-direction: column;
+
+  width: 506px;
+  transition-duration: 2s;
+  transition: ease-in-out;
+}
+
+.login_header {
+  display: flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0px 24px !important;
+  min-height: 48px !important;
+  border-bottom: 1px solid rgb(235, 235, 235) !important;
+  color: rgb(34, 34, 34) !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  font-weight: 800 !important;
+  min-height: 64px !important;
+}
+
+.login_signup {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.login_box {
+  padding: 24px !important;
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  outline: none !important;
+}
+.login_pane_heading {
+  margin-top: 8px !important;
+  margin-bottom: 24px !important;
+}
+
+.heading {
+  font-size: 22px !important;
+  line-height: 26px !important;
+  color: rgb(34, 34, 34) !important;
+  font-weight: 600 !important;
+  margin-bottom: 8px !important;
+}
+.text_field_box {
+  width: 100%;
+  /* margin:10px;     */
+}
+.text_field {
+  width: 100% !important;
+  /* height: 40px; */
+  /* padding: 14px !important; */
+}
+
+.login_btn {
+  margin-bottom: 24px !important;
+  margin-top: 26px !important;
+  width: 100%;
+  margin: auto !important;
+}
+
+.continue_btn {
+  cursor: pointer !important;
+  display: inline-block !important;
+  margin: 0px !important;
+  /* position: relative !important; */
+  text-align: center !important;
+  text-decoration: none !important;
+  touch-action: manipulation !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    "Helvetica Neue", sans-serif !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  outline: none !important;
+  padding: 14px 24px !important;
+  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s,
+    -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s !important;
+  -webkit-tap-highlight-color: transparent !important;
+  border: none !important;
+  background: linear-gradient(
+    to right,
+    rgb(230, 30, 77) 0%,
+    rgb(227, 28, 95) 50%,
+    rgb(215, 4, 102) 100%
+  ) !important;
+  color: rgb(255, 255, 255) !important;
+  width: 100% !important;
+}
+
+.forget_password {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  margin-top: 25px;
+}
+.or_line {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  margin: 20px 10px;
+}
+
+.line {
+  width: 45%;
+  height: 2px;
+  background-color: lightgrey;
+}
+
+.social_btn {
+  width: 100% !important;
+  margin-bottom: 16px !important;
+}
+
+.social_btn button {
+  cursor: pointer !important;
+  display: inline-block !important;
+  margin: 0px !important;
+  position: relative !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  touch-action: manipulation !important;
+
+  font-size: 16px !important;
+  line-height: 24px !important;
+  letter-spacing: normal !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    "Helvetica Neue", sans-serif !important;
+  color: rgb(72, 72, 72) !important;
+  padding: 10px 12px !important;
+  font-weight: 800 !important;
+  border-radius: 8px !important;
+  border-width: 2px !important;
+  border-style: solid !important;
+  border-color: rgb(176, 176, 176) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  min-width: 71.1935px !important;
+  width: 100% !important;
+}
+
+.social_btn:hover {
+  outline: none;
+  border: none;
+  border-radius: 8px !important;
+  border-width: 2px !important;
+  transition: 0.2s ease-in-out;
+  border: 2px solid black;
+}
+
+.inside_social_btn {
+  -webkit-box-align: center !important;
+  display: flex !important;
+  align-items: center !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+}
+
+.inside_svg {
+  flex: 0 1 0% !important;
+}
+
+.ctn_with_btn {
+  flex: 1 1 0% !important;
+}
+/* .line{
+    
+    width: 90px;
+    height: 3px;
+    border: 2px solid black;
+} */
+
+/* .login_container input{
+height: 40px;
+width: 100%;
+}
+
+.login_container a{
+    margin: 5px;
+}
+.login_container a:hover{
+    color: blue;
+}
+.login_btn{
+    margin: 20px;
+    border: none;
+    border: 2px solid greenyellow;
+    width: 300px;
+    height: 40px;
+    background-color: lightgreen;
+}
+
+.login_btn:hover{
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+.login_container label{
+    height: 4oxp;
+    margin: 10px;
+}
+
+.gle_btn{
+    background-color: tomato;
+    margin:10px;
+    border:none;
+    border:2px solid red;
+    letter-spacing: 1px;
+    cursor: pointer;
+    width: 300px;
+    height: 60px;
+    }
+    .facebook_btn{
+        background-color: lightblue;
+       
+    margin:10px;
+    border:none;
+    border:2px solid lightblue;
+    letter-spacing: 1px;
+    cursor: pointer;
+    width: 300px;
+    height: 60px;
+    }
+    .signup_btn{
+        border:none;
+        width: 300px;
+    height: 40px;
+    background-color: greenyellow;
+    margin: 20px;
+    }
+    .gle_btn:hover{
+        border:2px solid red;
+        opacity: 0.3;
+    }
+    .facebook_btn:hover{
+        border:2px solid lightblue;
+        opacity: 0.3;
+    }
+    
+    .signup_btn:hover{
+        border:2px solid greenyellow;
+        opacity: 0.3;
+    } */

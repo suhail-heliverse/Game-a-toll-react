@@ -1,0 +1,24 @@
+
+.middle div {
+  margin-left: 20px;
+  letter-spacing: 1px;
+  font-size: larger;
+}
+
+.home_screen_container {
+  z-index: -1;
+}
+
+.home_screen_container {
+  position: "relative";
+}
+.popup_container {
+  position: absolute;
+  width: 100%;
+}
+.popup {
+  background-color: red;
+  width: 800px;
+  position: absolute;
+  left: 30%;
+}
