@@ -10,7 +10,7 @@ function Banner() {
           <h1>
             Play Game <br /> Everyday.
             <br />
-            Always be  <br />
+            Always be   <br />
             Winner.
           </h1>
           {/* <p>
