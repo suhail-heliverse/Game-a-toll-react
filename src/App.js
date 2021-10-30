@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
-import { AdminView, HomeScreen, MatchView } from "./component";
+import { AdminView, HomeScreen, MatchView, Dashboard } from "./component/index";
 
 function App() {
   return (
@@ -16,6 +16,9 @@ function App() {
         </Route>
         <Route exact path="/admin">
           <AdminView />
+        </Route>
+        <Route exact path="/dashboard">
+          <Dashboard />
         </Route>
       </Switch>
     </main>

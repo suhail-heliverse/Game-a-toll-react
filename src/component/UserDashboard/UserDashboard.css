@@ -1,0 +1,114 @@
+.user_dashboard_wrapper{
+    /* background-color: aqua; */
+    width: 80%;
+    height: 80vh;
+    margin: auto ;
+  display: flex;
+    /* justify-content: space-between; */
+}
+
+.user_dashboard{
+    /* background-color: red; */
+    flex:4;
+    /* border: 2px solid black; */
+    margin-right: 10px;
+    border-radius: 20px;
+    border-radius: 20px;
+    background-color: whitesmoke;
+}
+
+.user_profile{
+    /* background-color: blue; */
+    flex: 2;
+  
+}
+
+.user_heading{
+    height: 100px;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border-top-left-radius: 19px;
+    border-top-right-radius: 19px; */
+    border-radius: 20px;
+    padding: 40px;
+    margin:10px ;
+}
+.user_heading h1{
+    text-align: center;
+}
+.user_graphs{
+    display: flex;
+    flex-direction: column;
+    /* background-color: white; */
+}
+
+.graphs{
+    display: flex;
+    background-color: white;
+
+}
+
+.graphs div{
+    height: 200px;
+    width: 300px;
+    border:2px solid whitesmoke;
+    border-radius: 20px;
+}
+.user_graphs{
+    display: flex;
+    margin: 10px;
+    flex: 1;
+}
+.social_media_affilate{
+    border:2px solid blue;
+    width: 300px;
+    /* height:300px; */
+    margin:10px;
+    text-align: center;
+}
+.transaction_histiory{
+    border:2px solid black;
+    min-height: 100px;
+    margin: 10px    ;
+}
+.user_profile{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    background-color: whitesmoke;
+    border-radius: 20px;
+
+}
+
+.user_image{
+    height: 50px;
+    width: 100px;
+    border-radius: 100%;
+    border: 2px solid black;
+    text-align: center;
+    margin-top: 60px;
+}
+.personal_information{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    flex-direction: row !important;
+    margin: 10px;
+    padding: 10px;
+    margin-top: 61px;
+
+}
+
+.information_div{
+    width: 90%;
+    background-color: white;
+    display: flex;
+    padding: 10px;
+    margin: 10px;
+}
+.information_div div{
+  margin-right: 10px;  
+}

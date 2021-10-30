@@ -1,6 +1,8 @@
 import React from "react";
 import "./HowPlay.css";
-import { ReactComponent as TropySvg } from "../../assests/svg/Vector.svg";
+import { ReactComponent as PlayerSvg } from "../../assests/svg/player_icon.svg";
+import { ReactComponent as TropySvg } from "../../assests/svg/trophy_icon.svg";
+import { ReactComponent as VideoGameSvg } from "../../assests/svg/video_game_icon.svg";
 
 function HowPlay() {
   return (
@@ -22,7 +24,7 @@ function HowPlay() {
         </div>
         <div className="play_video">
           <div className="play_video_card">
-            <TropySvg />
+            <PlayerSvg />
             <h3>1. How to First Run</h3>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
@@ -32,7 +34,7 @@ function HowPlay() {
           </div>
 
           <div className="play_video_card">
-            <TropySvg />
+            <VideoGameSvg />
             <h3>2. How to Paly</h3>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga

@@ -1,8 +1,8 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
-import {ReactComponent as RightArrowSvg} from "../../assests/svg/right_arrow.svg";
-import {ReactComponent as LeftArrowSvg} from "../../assests/svg/left_arrow.svg";
+import {ReactComponent as RightArrowSvg} from "../../assests/svg/RightSvg.svg";
+import {ReactComponent as LeftArrowSvg} from "../../assests/svg/leftSvg.svg";
 import img1 from "../../assests/images/pupg.jpg";
 import img2 from "../../assests/images/gta.jpg";
 import img3 from "../../assests/images/pupg2.jpeg";
@@ -48,7 +48,7 @@ function Slider() {
           </div>
           <div className="img_slider">
             <div
-              className="circle"
+              className="circle circle_left"
               onClick={() => {
                 if (count == 4) {
                   setCount(0);
@@ -63,7 +63,7 @@ function Slider() {
             </div>
             <img src={image[`${count}`]} />
             <div
-              className="circle"
+              className="circle circle_right"
               onClick={() => {
                 if (count == 0) {
                   setCount(4);
