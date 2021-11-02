@@ -8,17 +8,19 @@
   /* padding-top: 70px; */
 }
 .banner_text {
-  flex-grow: 1;
+  /* flex-grow: 1; */
   text-align: center;
-  width: 50%;
+  margin-left: 58px;
+  /* width: 50%; */
 }
 .banner_text h1 {
   font-weight: bolder;
-  font-size: 5.5rem;
+  font-size: 6.5rem;
+  letter-spacing: 2px;
 }
 .banner_image {
   height: 100%;
-  width: 38%;
+  /* width: 38%; */
 }
 
 .banner_image img {

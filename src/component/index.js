@@ -11,3 +11,4 @@ export { default as Snackbar } from "./Snackbar/Snackbar";
 export { default as Slider } from "./Slider/Slider";
 export { default as HowPlay } from "./HowPlay/HowPlay";
 export { default as Signup } from "./Signup/Signup";
+export { default as Dashboard } from "./Dashboard/Dashboard";

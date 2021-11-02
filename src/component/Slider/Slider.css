@@ -46,13 +46,27 @@
   position: relative;
   cursor: pointer;
 }
+.circle_left{
+  right: 269px;
+}
+
+.circle_right{
+  left:223px
+}
 
 .circle:hover {
   opacity: 0.2;
 }
 .arrow_right {
   position: absolute;
-  right: 0px;
+  right: 9px;
+  bottom: 1px;
+}
+
+.arrow_left{
+  position: absolute;
+  right: -31px;
+  bottom: 1px;
 }
 
 @media (max-width: 1024px) {
