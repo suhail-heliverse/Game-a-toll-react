@@ -32,8 +32,8 @@ export default forwardRef(function MatchViewHandle(props,ref) {
 
     const credentials = {
         region: "us-east-2",
-        accessKeyId: "AKIATZ6B4KZG2PWXFQTF",
-        secretAccessKey: "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",
+        accessKeyId: "AKIATZ6B4KZG2K37YTAD",
+        secretAccessKey: "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",
         sessionToken: "",
         endpoint: "https://kinesisvideo.us-east-2.amazonaws.com",
         sendVideo: true,
