@@ -23,6 +23,7 @@ import Stack from "@mui/material/Stack";
 import Profile from "../Profile/Profile"
 import Graphs from "../Graphs/Graphs"
 import UserDashboard from "../UserDashboard/UserDashboard"
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -103,6 +104,12 @@ export default function Dashboard() {
     setOpen(false);
   };
 
+  const handleOpenProfile=()=>{
+    console.log("open")
+    setProfile(true)
+    setShowGraphs(false);
+  }
+
   return (
     <Box sx={{ display: "flex"}}>
       <CssBaseline />
@@ -140,6 +147,8 @@ export default function Dashboard() {
           {/* </Stack> */}
 
           <Typography>Faizan pasha</Typography>
+          <ExpandMoreIcon/>
+
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -224,8 +233,8 @@ export default function Dashboard() {
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography> */}
         {/* {graphs && <Graphs/>} */}
-        {graphs && <UserDashboard/>}
-        {profile && <Profile />}
+        {graphs && <UserDashboard openProfile={handleOpenProfile}/>}
+        {profile && <Profile  />}
       </Box>
     </Box>
   );
