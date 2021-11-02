@@ -11,7 +11,9 @@ import "./Login.css"
 import PaymentGateway from "../PaymentGateway/PaymentGateway";
 import { fetchData } from "../../middleware/RequestHandler";
 
-const API_ENDPOINT = "https://gamingatoll.com";
+const API_ENDPOINT = 
+// "https://gamingatoll.com";
+"http://localhost:8080";
 
 function Login({showSignup, closeHandler}) {
 

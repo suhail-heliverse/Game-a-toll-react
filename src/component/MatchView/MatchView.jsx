@@ -5,6 +5,7 @@ import { fetchData } from "../../middleware/RequestHandler";
 import VisitorsView from "../VisitorsView/VisitorsView";
 import { io } from "socket.io-client";
 import "./MatchView.css"
+import { startMaster } from "../../utils/service";
 
 
 export default function MatchView() {
@@ -12,16 +13,17 @@ export default function MatchView() {
   const [isMasterTwo, setIsMasterTwo] = useState(false);
   const [isVisitor, setIsVisitor] = useState(false);
   const [notSufficientPlayer, setNotSufficientPlayer] = useState(false);
+  const [localStreamScreen,setLocalStreamScreen] = useState(null);
+  const [localStreamCamera,setLocalStreamCamera] = useState(null);
   const [queue, setQueue] = useState([]);
 
   const router = useHistory();
-  const childRef = useRef();
-
   useEffect(async ()=>{
-    // const socket = io('ws://localhost:8080');
-    const socket = io('https://gamingatoll.com',{path:'/socket.io'});
+    // const socket = io('https://gamingatoll.com',{path:'/socket.io'});
+    const socket = io('http://localhost:8080',{path:'/socket.io'});
     socket.emit('join',{userId: JSON.parse(localStorage.user).id});
 
+    
     socket.on('connect',async() => {
       const response = await fetchData('/startMatch',{method:"GET"});
     if(response.status && response.message == "match-in-progress") {
@@ -39,8 +41,10 @@ export default function MatchView() {
       setNotSufficientPlayer(false);
       setIsVisitor(false);
       if(data.type == "master-one") {
+        console.log("Master one")
         setIsMasterOne(true);
       } else if(data.type == "master-two") {
+        console.log("Master-Two")
         setIsMasterTwo(true);
       }
     })
@@ -52,7 +56,6 @@ export default function MatchView() {
     })
 
     socket.on('end-match',()=>{
-      // childRef.current.endMatch();
       router.push('/')
       window.location.reload();
     })
@@ -60,8 +63,22 @@ export default function MatchView() {
       const updateQueue = (JSON.parse(newQueue.queue))
       setQueue(prevQeueue => setQueue(updateQueue));
     })
-    
-    
+    socket.on('join-new-channel',(data)=>{
+      console.log("JOIN NEW CHANNEL",data)
+      startMaster(localStreamCamera,"game-a-toll-camera-two-batch-"+data.batch)
+    })
+
+    try {
+      setLocalStreamCamera(await navigator.mediaDevices.getUserMedia({
+        video: { width: { ideal: 1280 }, height: { ideal: 720 } },
+        audio: true,
+      }));
+     setLocalStreamScreen(await navigator.mediaDevices.getDisplayMedia());
+  } catch (e) {
+    console.error("[MASTER] Could not find webcam");
+  }
+  console.log(localStreamCamera)
+
   },[])
 
   if(notSufficientPlayer) {
@@ -76,43 +93,39 @@ export default function MatchView() {
   return (
     <>
       ￼
-      {isMasterOne && (
+      {isMasterOne && localStreamCamera && localStreamScreen &&(
         <div className="match_view">
           <div className="camera_view">
             <MatchViewHandle
-              masterChannel="game-a-toll-camera-one"
-              viewerChannel="game-a-toll-camera-two"
-              type="camera"
-              ref = {childRef}
+              masterChannel="game-a-toll-camera-one-batch-1"
+              viewerChannel="game-a-toll-camera-two-batch-1"
+              localStream = {localStreamCamera}
             />
           </div>
           <div className="screen_view">
             <MatchViewHandle
-              masterChannel="game-a-toll-screen-one"
-              viewerChannel="game-a-toll-screen-two"
-              type="screen"
-              ref = {childRef}
+              masterChannel="game-a-toll-screen-one-batch-1"
+              viewerChannel="game-a-toll-screen-two-batch-1"
+              localStream = {localStreamScreen}
             />
           </div>
         </div>
       )}
-      {isMasterTwo && (
+      {isMasterTwo && localStreamCamera && localStreamScreen &&(
         <div className="match_view">
           <div className="camera_view">
             <MatchViewHandle
-              masterChannel="game-a-toll-camera-two"
-              viewerChannel="game-a-toll-camera-one"
-              type="camera"
-              ref = {childRef}
+              masterChannel="game-a-toll-camera-two-batch-1"
+              viewerChannel="game-a-toll-camera-one-batch-1"
+              localStream = {localStreamCamera}
             />
           </div>
           <div className="screen_view">
             <MatchViewHandle
-              masterChannel="game-a-toll-screen-two"
-              viewerChannel="game-a-toll-screen-one"
-              type="screen"
-              ref = {childRef}
-            />``
+              masterChannel="game-a-toll-screen-two-batch-1"
+              viewerChannel="game-a-toll-screen-one-batch-1"
+              localStream = {localStreamScreen}
+            />
           </div>
         </div>
       )}
