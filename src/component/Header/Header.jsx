@@ -22,8 +22,9 @@ function Header() {
   const router = useHistory();
   const menuRef = useRef(null);
   const headerRef = useRef(null);
-  const API_ENDPOINT = "https://gamingatoll.com";
-  // "http://localhost:8080";
+  const API_ENDPOINT = 
+  // "https://gamingatoll.com";
+  "http://localhost:8080";
 
   // const sideBarRef = useRef();
 

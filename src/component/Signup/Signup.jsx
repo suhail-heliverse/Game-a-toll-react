@@ -6,7 +6,10 @@ import "./Signup.css"
 import axios from "axios";
 
 
-const API_ENDPOINT="https://gamingatoll.com"
+const API_ENDPOINT=
+// "https://gamingatoll.com"
+"http://localhost:8080";
+
 function Signup({ showLogin, closeHandler }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();

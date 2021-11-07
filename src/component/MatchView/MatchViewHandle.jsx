@@ -1,8 +1,8 @@
-import { useRef, useEffect, forwardRef, useImperativeHandle } from "react";
+import { useRef, useEffect, forwardRef } from "react";
 import AWS from "aws-sdk";
 import * as KVSWebRTC from "amazon-kinesis-video-streams-webrtc"
 
-export default forwardRef(function MatchViewHandle(props,ref) {
+export default forwardRef(function MatchViewHandle(props) {
     const videoRef = useRef(null);
 
     const sample = {
@@ -15,7 +15,7 @@ export default forwardRef(function MatchViewHandle(props,ref) {
 
     const master = {
         signalingClient: null,
-        localStream: null,
+        localStream: props.localStream,
         peerConnectionByClientId: {},
         peerConnectionStatsInterval: null,
         localStream: null,
@@ -42,6 +42,7 @@ export default forwardRef(function MatchViewHandle(props,ref) {
 
     async function startSample() {
         console.log("SAMPLE STARTED")
+        console.log(props,master)
         viewer.remoteView = videoRef.current;
         const kinesisVideoClient = new AWS.KinesisVideo({
             region: credentials.region,
@@ -207,18 +208,7 @@ export default forwardRef(function MatchViewHandle(props,ref) {
 
         const resolution = { width: { ideal: 1280 }, height: { ideal: 720 } }
 
-        try {            
-            if (props.type=="camera") {
-                master.localStream = await navigator.mediaDevices.getUserMedia({
-                    video:resolution,
-                    audio: true
-                });
-            } else if(props.type == "screen") {
-                master.localStream = await navigator.mediaDevices.getDisplayMedia();
-            }
-        } catch (e) {
-            console.error("[MASTER] Could not find webcam");
-        }
+        master.localStream = props.localStream;
 
         master.signalingClient.on("open",async (offer,remoteClientId)=>{
             console.log("[MASTER] Connected to signaling service")
@@ -387,13 +377,9 @@ export default forwardRef(function MatchViewHandle(props,ref) {
         }
     }
 
-    useImperativeHandle(ref,()=>{
-        const endMatch = ()=>{
-            endSample();
-        }
-    })
-
     useEffect(()=>{
+        console.log("Start sample")
+        console.log(props)
         startSample();
     },[])
 

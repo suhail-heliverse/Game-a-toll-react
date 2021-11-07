@@ -2,7 +2,7 @@ import React,{ useRef, useEffect } from "react";
 import AWS from "aws-sdk";
 import * as KVSWebRTC from "amazon-kinesis-video-streams-webrtc"
 
-export default function ViewerView({channel}) {
+export default function ViewerView({channel,batch}) {
   const videoRef = useRef(null);
 
   const viewer = {
@@ -21,7 +21,7 @@ export default function ViewerView({channel}) {
     secretAccessKey: "dM7mC6VbCaKbZ35RL0uX4pBOwoHYG4Rjx6yvFffU",
     sessionToken: "",
     endpoint: "https://kinesisvideo.us-east-2.amazonaws.com",
-    channelName: channel,
+    channelName: channel + "-batch-" + batch,
     sendVideo: true,
     clientId: "ZPXJHNQVDW"
   };

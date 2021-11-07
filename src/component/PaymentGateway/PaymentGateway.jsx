@@ -19,7 +19,8 @@ function PaymentGateway(props) {
       "Content-Type": "application/json",
     };
     return fetch(
-      "https://gamingatoll.com/api/stripe",
+      // "https://gamingatoll.com/api/stripe",
+      "http://localhost:8080/api/stripe",
       {
         method: "POST",
         headers,
