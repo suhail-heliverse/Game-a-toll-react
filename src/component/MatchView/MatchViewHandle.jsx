@@ -379,6 +379,7 @@ export default forwardRef(function MatchViewHandle(props) {
 
     useEffect(()=>{
         console.log("Start sample")
+        console.log(props)
         startSample();
     },[])
 

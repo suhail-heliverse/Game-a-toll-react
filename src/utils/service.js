@@ -8,7 +8,7 @@ const credentials = {
   sessionToken: "",
   endpoint: "https://kinesisvideo.us-east-2.amazonaws.com",
   sendVideo: true,
-  clientId: "LSKDFJSSLD",
+  clientId: "PSKDFJDSLA",
 };
 
 async function startMaster(localStream,channelName) {
@@ -126,7 +126,7 @@ async function startMaster(localStream,channelName) {
   //   console.error("[MASTER] Could not find webcam");
   // }
   master.localStream = localStream;
-
+  console.log(master.localStream)
   master.signalingClient.on("open", async (offer, remoteClientId) => {
     console.log("[MASTER] Connected to signaling service");
   });

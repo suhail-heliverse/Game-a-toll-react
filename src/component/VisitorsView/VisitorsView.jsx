@@ -31,7 +31,7 @@ function VisitorsView(props) {
       </div>
     );
   }
-
+  
   return (
     <div className="viewer_view">
       <div className="visitor_viewer">

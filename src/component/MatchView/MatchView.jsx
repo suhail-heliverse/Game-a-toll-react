@@ -15,8 +15,11 @@ export default function MatchView() {
   const [notSufficientPlayer, setNotSufficientPlayer] = useState(false);
   const [localStreamScreen,setLocalStreamScreen] = useState(null);
   const [localStreamCamera,setLocalStreamCamera] = useState(null);
+  const [mediaStreamReady,setMediaStreamReady] = useState(false);
+  const [startNewChannel,setStartNewChannel] = useState(0);
   const [queue, setQueue] = useState([]);
 
+  
   const router = useHistory();
   useEffect(async ()=>{
     // const socket = io('https://gamingatoll.com',{path:'/socket.io'});
@@ -43,9 +46,11 @@ export default function MatchView() {
       if(data.type == "master-one") {
         console.log("Master one")
         setIsMasterOne(true);
+        setIsMasterTwo(false);
       } else if(data.type == "master-two") {
         console.log("Master-Two")
         setIsMasterTwo(true);
+        setIsMasterOne(false);
       }
     })
     socket.on('insufficient-players',()=>{
@@ -65,7 +70,9 @@ export default function MatchView() {
     })
     socket.on('join-new-channel',(data)=>{
       console.log("JOIN NEW CHANNEL",data)
-      startMaster(localStreamCamera,"game-a-toll-camera-two-batch-"+data.batch)
+      console.log(localStreamCamera,localStreamScreen,mediaStreamReady);
+      setStartNewChannel(data.batch);
+      // startMaster(localStreamCamera,"game-a-toll-camera-two-batch-"+data.batch)
     })
 
     try {
@@ -74,12 +81,36 @@ export default function MatchView() {
         audio: true,
       }));
      setLocalStreamScreen(await navigator.mediaDevices.getDisplayMedia());
+     
   } catch (e) {
+    console.log(e)
     console.error("[MASTER] Could not find webcam");
   }
-  console.log(localStreamCamera)
-
   },[])
+
+  useEffect(()=>{
+    if(localStreamScreen && localStreamCamera) {
+      setMediaStreamReady(true);
+      console.log(localStreamScreen,localStreamCamera,mediaStreamReady);
+    }else {
+      console.log(localStreamScreen,localStreamCamera,mediaStreamReady);
+    }
+  },[localStreamCamera,localStreamScreen])
+
+  useEffect(()=>{
+    if(startNewChannel >= 2) {
+      console.log(localStreamScreen,localStreamCamera,mediaStreamReady,isMasterOne,isMasterTwo)
+      if(isMasterOne) {
+        console.log("game-a-toll-camera-one-batch")
+        startMaster(localStreamCamera,"game-a-toll-camera-one-batch-"+startNewChannel)
+        startMaster(localStreamScreen,"game-a-toll-screen-one-batch-"+startNewChannel)
+      } else if(isMasterTwo) {
+        console.log("game-a-toll-camera-two-batch")
+        startMaster(localStreamCamera,"game-a-toll-camera-two-batch-"+startNewChannel)
+        startMaster(localStreamScreen,"game-a-toll-screen-two-batch-"+startNewChannel)
+      }
+    }
+  },[startNewChannel])
 
   if(notSufficientPlayer) {
     return (
@@ -93,7 +124,7 @@ export default function MatchView() {
   return (
     <>
       ￼
-      {isMasterOne && localStreamCamera && localStreamScreen &&(
+      {isMasterOne && mediaStreamReady &&(
         <div className="match_view">
           <div className="camera_view">
             <MatchViewHandle
@@ -111,7 +142,7 @@ export default function MatchView() {
           </div>
         </div>
       )}
-      {isMasterTwo && localStreamCamera && localStreamScreen &&(
+      {isMasterTwo && mediaStreamReady &&(
         <div className="match_view">
           <div className="camera_view">
             <MatchViewHandle
