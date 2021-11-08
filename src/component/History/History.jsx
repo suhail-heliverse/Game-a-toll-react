@@ -132,7 +132,7 @@ export default function History(props) {
     setRows(props.userHistoryData);
 
     console.log(
-      "================================================rows here====================================="
+      "===============================================rows here====================================="
     );
   }, []);
 React.useEffect(()=>{
