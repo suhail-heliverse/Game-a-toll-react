@@ -14,10 +14,35 @@ import Profile_image from "../../assests/images/profile.png"
 import AddLocationIcon from '@mui/icons-material/AddLocation';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
+import {History} from '../index'
+import { fetchData } from '../../middleware/RequestHandler';
+
 
 // import  {FaPencil}  from "react-icons/fa";
 
 function UserDashboard(props) {
+    const [userHistoryData, setUserHistoryData]=React.useState([]);
+    React.useEffect(async() => {
+        const user= JSON.parse(localStorage.getItem("user"));
+        
+        console.log(user.id);
+        console.log(user);
+        let userHistory = await fetchData("/getMeta", {
+            method: "POST",
+            body: JSON.stringify({"userId":user.id}),
+          });
+       
+        //   console.log(localStorage.getItem("user"));
+        console.log("===============================user History===========================================");
+        console.log(userHistory);
+        console.log("==================================userHistory Data========================================");
+        const tempData=userHistory.message;
+        console.log(tempData.matchHistory)
+        setUserHistoryData(tempData.matchHistory)
+     
+      }, [])
+
+
     return (
         <div>
             <div className="user_dashboard_wrapper">
@@ -32,13 +57,13 @@ function UserDashboard(props) {
                 </div> */}
                 <div className="user_graphs"> 
                     {/* <div className="graphs"> */}
-                    <Graphs/>
+                    {/* <Graphs/> */}
                         {/* <div> your precesion </div>
                         <div> your risk</div> */}
                     {/* </div> */}
-                    <div>Invite your friends</div>
+                    {/* <div>Invite your friends</div> */}
                 </div>
-                <div className="social_media_affilate">
+                {/* <div className="social_media_affilate">
                     <h4>Sync Your Social Media Account</h4>
                     <div className="social_icon">                    
                     <div className="social_media_icon"> 
@@ -68,10 +93,11 @@ function UserDashboard(props) {
                     </div>
                     </div>
 
-                </div>
+                </div> */}
              </div>
              <div className="transaction_histiory">
-                 <h3>Your Playing History</h3>
+                
+                <History userHistoryData={userHistoryData}/>
              </div>
              </div>
              <div className="user_profile">

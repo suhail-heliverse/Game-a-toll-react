@@ -12,3 +12,7 @@ export { default as Slider } from "./Slider/Slider";
 export { default as HowPlay } from "./HowPlay/HowPlay";
 export { default as Signup } from "./Signup/Signup";
 export { default as Dashboard } from "./Dashboard/Dashboard";
+export { default as UserHeader } from "./UserHeader/UserHeader";
+export { default as UserDashboard} from "./UserDashboard/UserDashboard";
+export { default as Profile} from "./Profile/Profile";
+export { default as History} from "./History/History";
