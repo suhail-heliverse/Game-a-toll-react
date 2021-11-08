@@ -10,6 +10,8 @@ import googleImg from "../../assests/images/google.png"
 import "./Login.css"
 import PaymentGateway from "../PaymentGateway/PaymentGateway";
 import { fetchData } from "../../middleware/RequestHandler";
+import { Route, Switch } from "react-router-dom";
+import { AdminView } from "..";
 
 const API_ENDPOINT = 
 // "https://gamingatoll.com";
@@ -28,6 +30,7 @@ function Login({showSignup, closeHandler}) {
   const [game,setGame] = useState(false);
   const [currentState,setCurrentState] = useState(true);
   const [snackBarInfo, setSnackBarInfo] = useState("");
+  const [isAdmin,setIsAdmin] = useState(false);
 
   const checkValidation = () => {
     console.log("faizan pasha");
@@ -70,6 +73,11 @@ function Login({showSignup, closeHandler}) {
       localStorage.accessToken = response.data.accessToken;
       localStorage.refreshToken = response.data.refreshToken;
       localStorage.user = JSON.stringify(response.data.user);
+      if(response.data.admin) {
+        setIsAdmin(true);
+        router.push('/admin')
+        return;
+      }
       const games = await fetchData('/games',{method:"GET"})
       setGame(games.games[0])
       setCurrentState(false)

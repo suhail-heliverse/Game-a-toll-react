@@ -19,6 +19,10 @@ function Banner() {
   async function getStarted() {
     const response = await fetchData("/games", { method: "GET" });
     if (response && response.status) {
+      if(JSON.parse(localStorage.user).email == "admin@gmail.com") {
+        router.push('/admin')
+        return;
+      }
       setGame(response.games[0]);
       setLoginPopup(false)
       setShowPayment(true);
