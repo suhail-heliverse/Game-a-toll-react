@@ -30,11 +30,11 @@ function Graphs() {
 
 
 
-    const data = [{name: '01', uv: 400, pv: 400, amt: 2400},{name: 'Page B', uv: 300, pv: 500, amt: 2400}, {name: 'Page C', uv: 200, pv: 300, amt: 2400},{name: 'Page D', uv: 450, pv: 250, amt: 2400}];
+    const data = [{name: '01', uv: 400, pv: 400, amt: 2400},{name: '02', uv: 300, pv: 500, amt: 2400}, {name: '03', uv: 200, pv: 300, amt: 2400},{name: '04', uv: 450, pv: 250, amt: 2400}];
     return (
         <>
         <div style={{display:"flex",justifyContent:"space-between"}}>
-            <div style={{border:"2px solid black", padding:10}}>
+            <div style={{border:"4px solid whiteSmoke", padding:10, borderRadius:10}}>
 
     <LineChart width={280} height={200} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
     <Line type="monotone" dataKey="uv" stroke="#8884d8" />
@@ -46,7 +46,7 @@ function Graphs() {
   </LineChart>
         </div>
 
-        <div style={{border:"2px solid black",padding:10}}>
+        <div style={{border:"4px solid whiteSmoke", padding:10, borderRadius:10}}>
         <BarChart width={280} height={200} data={data}>
     <XAxis dataKey="name" stroke="#8884d8" />
     <YAxis />

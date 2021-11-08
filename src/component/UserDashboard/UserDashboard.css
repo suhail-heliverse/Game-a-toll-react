@@ -1,7 +1,7 @@
 .user_dashboard_wrapper{
     /* background-color: aqua; */
     width: 80%;
-    height: 80vh;
+    /* height: 80vh; */
     margin: auto ;
   display: flex;
     /* justify-content: space-between; */
@@ -14,7 +14,7 @@
     margin-right: 10px;
     border-radius: 20px;
     border-radius: 20px;
-    background-color: whitesmoke;
+    background-color: white     ;
 }
 
 .user_profile{
@@ -60,6 +60,8 @@
     display: flex;
     margin: 10px;
     flex: 1;
+    border-radius:10px;
+
 }
 .social_media_affilate{
     border:2px solid blue;
@@ -67,6 +69,7 @@
     /* height:300px; */
     margin:10px;
     text-align: center;
+    border-radius:10px;
 }
 .transaction_histiory{
     border:2px solid black;
@@ -84,8 +87,8 @@
 }
 
 .user_image{
-    height: 50px;
-    width: 100px;
+    height: 200px;
+    width: 200px;
     border-radius: 100%;
     border: 2px solid black;
     text-align: center;
@@ -111,4 +114,61 @@
 }
 .information_div div{
   margin-right: 10px;  
+}
+
+.user_name{
+    margin: 5px;
+}
+
+.user_profile_btn{
+    outline: none;
+    border: none;
+    background-color: #e4f3ee;
+    color: #67d76b;
+    padding: 8px;
+    border-radius: 10px;
+    letter-spacing: 2px;
+}
+.user_name{
+    margin: 10px;
+}
+
+.user_profile_btn:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.user_setting{
+    cursor: pointer;
+}
+.social_media_affilate{
+    display:"flex";
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    
+}
+
+.social_icon{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    cursor:pointer;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+}
+.social_media_icon{
+    background-color: white;
+    padding:10px;
+    width:100px;
+    margin:10px;
+border-radius:10px;
+}
+.connect_btn{
+    outline: none;
+    border: none;
+    background-color: #0471ff;
+    color: white;
+    padding: 4px;
+    border-radius: 10px;
+    letter-spacing: 1px;    
 }
