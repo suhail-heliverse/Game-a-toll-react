@@ -112,12 +112,11 @@ const userHistoryDataf = [
 ];
 
 export default function History(props) {
- 
   const [rows, setRows] = React.useState(props.userHistoryData);
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [rowsAvailable, setRowsAvailable]=React.useState(false)
+  const [rowsAvailable, setRowsAvailable] = React.useState(false);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -135,18 +134,14 @@ export default function History(props) {
       "===============================================rows here====================================="
     );
   }, []);
-React.useEffect(()=>{
-  if(rows.length > 0){
-    setRowsAvailable(true)
-  }
-},[rows])
+  React.useEffect(() => {
+    if (rows.length > 0) {
+      setRowsAvailable(true);
+    }
+  }, [rows]);
   console.log(rows);
-  if(!rowsAvailable){
-    return (
-      <div>
-        table is empty.
-      </div>
-    );
+  if (!rowsAvailable) {
+    return <div>table is empty.</div>;
   }
 
   return (
@@ -174,12 +169,14 @@ React.useEffect(()=>{
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                     {columns.map((column) => {
                       const value = row[column.id];
-                      console.log(column.id," suhail")
-                      if(column.id == "gameImage") {
+
+                      if (column.id == "gameImage") {
                         // return <img style={{height:50}} src={value}></img>
-                        return <TableCell key={column.id} align={column.align}>
-                          <img style={{height:50}} src={value}></img>
-                        </TableCell>
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            <img style={{ height: 50 }} src={value}></img>
+                          </TableCell>
+                        );
                       }
                       return (
                         <TableCell key={column.id} align={column.align}>
