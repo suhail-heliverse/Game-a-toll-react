@@ -129,21 +129,12 @@ export default function History(props) {
 
   React.useEffect(() => {
     setRows(props.userHistoryData);
+  }, [props.userHistoryData]);
 
-    console.log(
-      "===============================================rows here====================================="
-    );
-  }, []);
-  React.useEffect(() => {
-    if (rows.length > 0) {
-      setRowsAvailable(true);
-    }
-  }, [rows]);
-  console.log(rows);
-  if (!rowsAvailable) {
-    return <div>table is empty.</div>;
+  if(rows.length == 0) {
+    return <>LOADER</>
   }
-
+  
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
