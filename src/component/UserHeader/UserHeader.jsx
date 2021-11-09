@@ -123,7 +123,7 @@ export default function UserHeader() {
       </Menu>
     </React.Fragment>
    {openDashboard &&<UserDashboard />}
-   {/* {openProfile && <Profile/>} */}
+   {openProfile && <Profile/>}
 
     </>
   );

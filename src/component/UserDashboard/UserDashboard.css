@@ -20,7 +20,9 @@
 .user_profile{
     /* background-color: blue; */
     flex: 2;
-  
+   position:sticky;
+  height:fit-content;
+  top:80px;
 }
 
 .user_heading{

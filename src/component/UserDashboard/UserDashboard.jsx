@@ -63,53 +63,20 @@ function UserDashboard(props) {
                    <div>month</div>
                 </div> */}
             <div className="user_graphs">
-              {/* <div className="graphs"> */}
+        
               <Graphs />
-              {/* <div> your precesion </div>
-                        <div> your risk</div> */}
-              {/* </div> */}
-              {/* <div>Invite your friends</div> */}
-            </div>
-            {/* <div className="social_media_affilate">
-                    <h4>Sync Your Social Media Account</h4>
-                    <div className="social_icon">                    
-                    <div className="social_media_icon"> 
-                        <InstagramIcon style={{fontSize:"40px",color:"#d34151"}}/>
-                        <p>Instagram</p>
-                        <button className="connect_btn">connect</button>
-                    </div>
-                    <div className="social_media_icon"> 
-                        <FacebookIcon style={{fontSize:"40px",color:"blue"}}/>
-                        <p>Facebook</p>
-                        <button className="connect_btn">connect</button>
-                    </div>
-                    <div className="social_media_icon"> 
-                        <LinkedInIcon style={{fontSize:"40px",color:"#007bb5"}}/>
-                         <p>LinkdIn</p>
-                        <button className="connect_btn">connect</button>
-                    </div>
-                    <div className="social_media_icon"> 
-                        <TwitterIcon style={{fontSize:"40px",color:"#55acee"}}/>
-                        <p>Twitter</p>
-                        <button className="connect_btn">connect</button>
-                    </div>
-                    <div className="social_media_icon"> 
-                        <NotificationsIcon style={{fontSize:"40px",color:"#fcef3c"}}/>
-                        <p>SnapChat</p>
-                        <button className="connect_btn">connect</button>
-                    </div>
-                    </div>
 
-                </div> */}
+            </div>
+       
           </div>
           <div className="transaction_histiory">
             <History userHistoryData={userHistoryData} />
           </div>
         </div>
         <div className="user_profile">
-          {/* <div className="user_image">  */}
+         
           <img className="user_image" src={Profile_image} />
-          {/* </div> */}
+        
           <h3 className="user_name"> Faizan Pasha</h3>
           <button className="user_profile_btn">Affilate User</button>
           <div className="personal_information">
