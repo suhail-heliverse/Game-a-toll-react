@@ -187,21 +187,23 @@ export default function BasicTable(props) {
   const [loader, setLoader]=React.useState(true);
     React.useEffect(() => {
     setRows(props.userHistoryData);
-
+   
   }, [props.userHistoryData]);
-    React.useEffect(() => {
+
+  React.useEffect(() => {
     if (rows.length > 0) {
       setRowsAvailable(true);
       setLoader(false);
     }
   }, [rows]);
   console.log(rows);
-  // if (!rowsAvailable) {
-  //   return <div style={{display:"flex",justifyContent:"center",alignItem:"center"}}>No Record found.</div>;
-  // }
+  if (!rowsAvailable) {
+    return <div style={{display:"flex",justifyContent:"center",alignItem:"center"}}>No Record found.</div>;
+  }
   let monthArray = ["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"]
   
 
+  
   return (
     <>
     <h6 style={{margin:6}}>Your  History</h6>
