@@ -20,6 +20,7 @@ export default function UserHeader() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [openDashboard,setOpenDashboard]=React.useState(true);
   const [openProfile, setOpenProfile]=React.useState(false);
+  const [userAmount, setUserAmount]=React.useState(0);
   
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -46,7 +47,7 @@ export default function UserHeader() {
 
         <div style={{display:"flex",flexDirection:"column",marginRight:37}}> 
           <div style={{margin:2}}>Faizan pasha</div>
-         <div style={{margin:2}}>Amount:10</div>
+         <div style={{margin:2}}>Amount: $ {userAmount}</div>
         </div>
 
         <Tooltip title="Account settings">
@@ -122,7 +123,7 @@ export default function UserHeader() {
         </MenuItem>
       </Menu>
     </React.Fragment>
-   {openDashboard &&<UserDashboard />}
+   {openDashboard &&<UserDashboard callback={(amount)=>{setUserAmount(amount)}}/>}
    {openProfile && <Profile/>}
 
     </>

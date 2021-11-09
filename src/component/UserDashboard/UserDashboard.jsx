@@ -21,6 +21,7 @@ import { fetchData } from "../../middleware/RequestHandler";
 
 function UserDashboard(props) {
   const [userHistoryData, setUserHistoryData] = React.useState([]);
+  const [userAmount,setUserAmount] = React.useState(0);
   React.useEffect(async () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -31,16 +32,9 @@ function UserDashboard(props) {
       body: JSON.stringify({ userId: user.id }),
     });
 
-    //   console.log(localStorage.getItem("user"));
-    console.log(
-      "===============================user History==========================================="
-    );
-    console.log(userHistory);
-    console.log(
-      "==================================userHistory Data========================================"
-    );
     const tempData = userHistory.message;
     console.log(tempData.matchHistory);
+    props.callback(tempData.amount)
     setUserHistoryData(tempData.matchHistory);
   }, []);
 

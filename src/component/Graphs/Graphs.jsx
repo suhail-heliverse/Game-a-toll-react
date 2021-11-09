@@ -21,7 +21,7 @@ import "./Graph.css";
 // import React from 'react'
 
 function Graphs() {
-  const [filter, setFilter] = React.useState("month");
+  const [filter, setFilter] = React.useState("week");
   const [dataLost, setDataLost] = React.useState([]);
   const [dataWon, setDataWon] = React.useState([]);
   const [labels, setLables] = React.useState([]);
@@ -48,10 +48,70 @@ function Graphs() {
     console.log(graphData);
   }, [filter]);
 
+  const dataForWon = (canvas) => {
+    const ctx = canvas.getContext("2d")
+    const gradient = ctx.createLinearGradient(0,0,0,400)
+    // gradient.addColorStop(0, 'rgba(58,123,213,1)');
+    gradient.addColorStop(0, '#05ff00');
+    // gradient.addColorStop(0, 'black');
+    // gradient.addColorStop(0, 'black');
+    // gradient.addColorStop(0, 'black');
+    gradient.addColorStop(1, 'rgba(0,210,255,0.3)');
+      return {
+        
+          labels,
+          datasets: [
+            {
+              label: "Number Of wins",
+              data: dataWon,
+
+              fill: true,
+              backgroundColor: gradient,
+              borderColor: [
+               "#05ff00"
+              ],
+              borderWidth: 1,
+            },
+          ],
+          
+         
+      }
+    }
+
+    const dataForLoss = (canvas) => {
+      const ctx = canvas.getContext("2d")
+      const gradient = ctx.createLinearGradient(0,0,0,400)
+      // gradient.addColorStop(0, 'rgba(58,123,213,1)');
+      gradient.addColorStop(0, '#ff0000');
+      // gradient.addColorStop(0, 'black');
+      // gradient.addColorStop(0, 'black');
+      // gradient.addColorStop(0, 'black');
+      gradient.addColorStop(1, '#fff');
+        return {
+          
+            labels,
+            datasets: [
+              {
+                label: "Number Of wins",
+                data: dataLost,
+  
+                fill: true,
+                backgroundColor: gradient,
+                borderColor: [
+                 "#ff0000"
+                ],
+                borderWidth: 1,
+              },
+            ],
+            
+           
+        }
+      }
+
   return (
     <>
       <div style={{display:"flex",justifyContent:"flex-end"}}>
-      <Box sx={{ minWidth: 200 }}>
+      <Box sx={{ minWidth: 200,marginBottom:3}}>
       <FormControl fullWidth>
         {/* <InputLabel id="demo-simple-select-label">Month</InputLabel> */}
         <Select
@@ -72,64 +132,55 @@ function Graphs() {
         style={{
           display: "flex",
           flexDirection: "row !important",
-          justifyContent: "space-around",
+          justifyContent: "space-between",
         }}
       >
-        <div style={{ width: 500, height: 400 }}>
+        <div style={{ width: 450,border:"2px solid whitesmoke",padding:"0px 5px" }}>
           <Line
             options={{
               responsive: true,
-              radius: 5,
+              radius: 3,
+              hoverRadius: 7,
+              tension: 0.5,
+              scales: {
+                x: {
+                    grid:{
+                     display:false
+                         }
+                   },
+                y: 
+                   {
+                 grid:{
+                  display:false
+                      }
+                   }
+                       }
             }}
-            data={{
-              labels,
-              datasets: [
-                {
-                  label: "Number Of wins",
-                  data: dataWon,
-
-                  fill: true,
-                  backgroundColor: "rgba(255, 99, 132, 0.2)",
-                  borderColor: [
-                    "rgba(255, 99, 132, 1)",
-                    "rgba(54, 162, 235, 1)",
-                    "rgba(255, 206, 86, 1)",
-                    "rgba(75, 192, 192, 1)",
-                    "rgba(153, 102, 255, 1)",
-                    "rgba(255, 159, 64, 1)",
-                  ],
-                  borderWidth: 1,
-                },
-              ],
-            }}
+            data={dataForWon}
           />
         </div>
-        <div style={{ width: 500, height: 400 }}>
+        <div style={{ width: 450,border:"2px solid whitesmoke",padding:"0px 5px" }}>
           <Line
             options={{
               responsive: true,
-              radius: 5,
+              radius: 3,
+              hoverRadius: 7,
+              tension: 0.5,
+              scales: {
+                x: {
+                    grid:{
+                     display:false
+                         }
+                   },
+                y: 
+                   {
+                 grid:{
+                  display:false
+                      }
+                   }
+                       }
             }}
-            data={{
-              labels,
-              datasets: [
-                {
-                  label: "Number Of Loss",
-                  data: dataLost,
-                  fill: true,
-                  backgroundColor: "rgba(255, 99, 132, 0.2)",
-                  borderColor: [
-                    "rgba(255, 99, 132, 1)",
-                    "rgba(54, 162, 235, 1)",
-                    "rgba(255, 206, 86, 1)",
-                    "rgba(75, 192, 192, 1)",
-                    "rgba(153, 102, 255, 1)",
-                    "rgba(255, 159, 64, 1)",
-                  ],
-                  borderWidth: 1,
-                },
-              ],
-            }}
+            data={dataForLoss}
           />
         </div>
       </div>

@@ -187,7 +187,6 @@ export default function BasicTable(props) {
   const [loader, setLoader]=React.useState(true);
     React.useEffect(() => {
     setRows(props.userHistoryData);
-   
   }, [props.userHistoryData]);
 
   React.useEffect(() => {
@@ -197,30 +196,32 @@ export default function BasicTable(props) {
     }
   }, [rows]);
   console.log(rows);
-  if (!rowsAvailable) {
-    return <div style={{display:"flex",justifyContent:"center",alignItem:"center"}}>No Record found.</div>;
-  }
+  // if (!rowsAvailable) {
+  //   return <div style={{display:"flex",justifyContent:"center",alignItem:"center"}}>No Record found.</div>;
+  // }
   let monthArray = ["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"]
   
 
   
   return (
     <>
-    <h6 style={{margin:6}}>Your  History</h6>
+    <h6 style={{margin:16}}>Your Playing History</h6>
     <TableContainer component={Paper}>
+    
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell sx={{color:"gray",fontSize:18}}>Gaming Image</TableCell>
+            <TableCell sx={{color:"gray",fontSize:18}}>Game Image</TableCell>
             <TableCell sx={{color:"gray",fontSize:18}} align="center">Game Name</TableCell>
             <TableCell  sx={{color:"gray",fontSize:18}}align="center">Date</TableCell>
             <TableCell  sx={{color:"gray",fontSize:18}}align="center">Entry Fees</TableCell>
             <TableCell  sx={{color:"gray",fontSize:18}}align="center">Winning Amount</TableCell>
             <TableCell  sx={{color:"gray",fontSize:18}}align="center">Status</TableCell>
           </TableRow>
+          
         </TableHead>
         <TableBody>
-          {loader && <CircularProgress sx={{textAlign:"center"}}/>}
+          
           {rows.map((row) => (
             <TableRow
               key={row.name}
@@ -228,7 +229,7 @@ export default function BasicTable(props) {
             >
               <TableCell component="th" scope="row">
            
-                <img style={{ height: 50 }} src={row.gameImage}></img>
+                <div style={{width:"100%",textAlign:"center"}}><img style={{ height: 50,width:50,borderRadius:"50%", }} src={row.gameImage}></img></div>
                      
               </TableCell>
               <TableCell align="center" sx={{fontSize:18}}>{row.gameName}</TableCell>
@@ -241,6 +242,7 @@ export default function BasicTable(props) {
           ))}
         </TableBody>
       </Table>
+    {loader && <div style={{width:"100%",display:"flex",justifyContent:"center",padding:50}}><CircularProgress sx={{textAlign:"center"}}/></div>}
     </TableContainer>
     </>
   );
