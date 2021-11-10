@@ -92,7 +92,7 @@ function Graphs() {
             labels,
             datasets: [
               {
-                label: "Number Of wins",
+                label: "Number Of loss",
                 data: dataLost,
   
                 fill: true,

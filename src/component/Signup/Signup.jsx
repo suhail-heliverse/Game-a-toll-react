@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Dialog from "@mui/material/Dialog";
 import TextField from "@material-ui/core/TextField";
@@ -10,17 +10,34 @@ const API_ENDPOINT="https://gamingatoll.com"
 function Signup({ showLogin, closeHandler }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
+  const [username,setUsername] = useState("");
+  const [validateUsername,setValidateUsername] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState();
 
-  let payload = {
-    email,
-    password,
+  useEffect(async()=>{
+    if(username!="") {
+      const response = await axios.post(API_ENDPOINT+'/checkUsername',{username})
+      console.log(response," Response")
+      if(response && response.data.status == true) {
+        setValidateUsername(false);
+        console.log(validateUsername)
+      } else if(response && response.data.status == false) {
+        setValidateUsername(true);
+        console.log(validateUsername)
+      }
+    }
+  },[username])
 
-    confirmPassword,
-  };
+
 
   async function sendData() {
+    if(validateUsername) return;
+    let payload = {
+      email,
+      password,
+      username,
+      confirmPassword,
+    };
     const response = await axios.post(`${API_ENDPOINT}/signup`, payload);
     console.log(response);
     if (response.data.status == true) {
@@ -66,6 +83,18 @@ function Signup({ showLogin, closeHandler }) {
               autoComplete="off"
               className="text_field_box"
             >
+              <TextField
+                id="outlined-basic"
+                label="Username"
+                variant="outlined"
+                className="text_field"
+                type="text"
+                error={validateUsername}
+                helperText={validateUsername?"username already taken":""}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
+              />
               <TextField
                 id="outlined-basic"
                 label="Email"
