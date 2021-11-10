@@ -17,7 +17,7 @@ const API_ENDPOINT =
 // "https://gamingatoll.com";
 "http://localhost:8080";
 
-function Login({showSignup, closeHandler}) {
+function Login({showSignup, closeHandler,loggedIn}) {
 
   const router = useHistory();
   const [email, setEmail] = useState("thesuhailansari786246@gmail.com");
@@ -68,6 +68,7 @@ function Login({showSignup, closeHandler}) {
     let messageData = response.data.message;
 
     if (response.data.status) {
+      loggedIn()
       showSnackBar(messageData);
       clearFields();
       localStorage.accessToken = response.data.accessToken;

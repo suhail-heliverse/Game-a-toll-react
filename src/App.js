@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import { AdminView, HomeScreen, MatchView, Dashboard } from "./component/index";
+import Leaderboard from "./component/Leaderboard/Leaderboard";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
         </Route>
         <Route exact path="/dashboard">
           <Dashboard />
+        </Route>
+        <Route exact path="/leaderboard">
+          <Leaderboard />
         </Route>
       </Switch>
     </main>

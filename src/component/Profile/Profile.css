@@ -110,7 +110,6 @@
   }
   .im_change_btn::after {
     inset: 0px;
-    position: absolute;
     content: "";
     opacity: 0;
 }

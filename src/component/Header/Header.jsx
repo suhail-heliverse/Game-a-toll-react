@@ -19,6 +19,7 @@ function Header() {
   const [showSnackBar,setShowSnackBar] = useState(false);
   const [snackBarMsg,setSnackBarMsg] = useState(false);
   const [game,setGame] = useState(false);
+  const [loggedIn,setLoggedIn] = useState(false);
   const router = useHistory();
   const menuRef = useRef(null);
   const headerRef = useRef(null);
@@ -29,36 +30,24 @@ function Header() {
   // const sideBarRef = useRef();
 
   async function getStarted() {
-    const response = await fetchData("/games", { method: "GET" });
-    if (response && response.status) {
-      if(JSON.parse(localStorage.user).email == "admin@gmail.com") {
-        router.push('/admin')
-        return;
-      }
-      setGame(response.games[0]);
-      setLoginPopup(false)
-      setShowPayment(true);
-      return; 
-    }
-    setShowPayment(false)
-    setLoginPopup(true);
+    // const response = await fetchData("/games", { method: "GET" });
+    // if (response && response.status) {
+      // setGame(response.games[0]);
+      setLoginPopup(true)
+      // setShowPayment(true);
+      // return; 
+    // }
+    // setShowPayment(false)
+    // setLoginPopup(true);
   }
 
-  useEffect(() => {
-    function changeBC() {
-      if(window.pageYOffset >= window.innerHeight-70) {
-        if(headerRef.current)headerRef.current.style.backgroundColor = "#000"
-        if(menuRef.current)menuRef.current.style.backgroundColor = "#000"
-        // headerRef.current.style.color = "#000"
-      }
-      else {
-        if(headerRef.current)headerRef.current.style.backgroundColor = "#222"
-        if(menuRef.current) menuRef.current.style.backgroundColor = "#222"
-        // headerRef.current.style.color = "#fff"
-      }
+  useEffect(async() => {
+    const response = await (await fetch('http://localhost:8080/verifyUser',{method:"GET",headers:{'Authorization':localStorage.accessToken}})).json();
+    if(response.message == "Unauthorized") {
+      setLoggedIn(false);
+    } else {
+      setLoggedIn(true);
     }
-    window.addEventListener("scroll",changeBC);
-    return window.removeEventListener("scroll",changeBC)
   },[]);
 
   const joinHandler = async(game, paymentStatus) => {
@@ -126,11 +115,10 @@ function Header() {
             <div>Testimonial</div>
             <div>FAQ'S</div>
             <div>Blog</div>
+            <div onClick={()=>{router.push('/leaderboard')}}>Leaderboard</div>
           </div>
 
-          <button className="started_btn" onClick={getStarted}>
-            Get Started
-          </button>
+            {loggedIn == true ? <button className="started_btn" >{JSON.parse(localStorage.user).username}</button>:<button className="started_btn" onClick={getStarted}>Login</button>}
         </div>
 
         <div className="sub-header" ref={menuRef}>
@@ -139,6 +127,7 @@ function Header() {
             <div className="options"> Testimonial</div>
             <div className="options">FAQ'S</div>
             <div className="options">Blog</div>
+            <div onClick={()=>{router.push('/leaderboard')}}>Leaderboard</div>
           </div>
         </div>
       </div>
@@ -152,6 +141,7 @@ function Header() {
             setLoginPopup(false);
             setShowRegister(false);
           }}
+          loggedIn = {()=>setLoggedIn(true)}
         />
       )}
       {showRegister && (

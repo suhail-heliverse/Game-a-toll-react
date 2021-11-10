@@ -8,126 +8,183 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Line } from "react-chartjs-2";
+import { fetchData } from "../../middleware/RequestHandler";
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import "./Graph.css";
 
 // import React from 'react'
 
 function Graphs() {
-  // function createData(name, calories, fat, carbs, protein) {
-  //     return { name, calories, fat, carbs, protein };
-  //   }
+  const [filter, setFilter] = React.useState("week");
+  const [dataLost, setDataLost] = React.useState([]);
+  const [dataWon, setDataWon] = React.useState([]);
+  const [labels, setLables] = React.useState([]);
+  
+  const handleChange = (event) => {
+    setFilter(event.target.value);
+  };
+ 
+  React.useEffect(async () => {
+    let payload = {
+      userId: JSON.parse(localStorage.user).id,
+      filter,
+    };
+    let graphData = await fetchData("/getUserStats", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    });
+    if (graphData && graphData.status) {
+      setDataLost(graphData.message.dataLost);
+      setDataWon(graphData.message.dataWon);
+      setLables(graphData.message.labels);
+    }
 
-  //   const rows = [
-  //     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  //     createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  //     createData('Eclair', 262, 16.0, 24, 6.0),
-  //     createData('Cupcake', 305, 3.7, 67, 4.3),
-  //     createData('Gingerbread', 356, 16.0, 49, 3.9),
-  //   ];
+    console.log(graphData);
+  }, [filter]);
 
-  // const data = [{name: '01', uv: 400, pv: 400, amt: 2400},{name: '02', uv: 300, pv: 500, amt: 2400}, {name: '03', uv: 200, pv: 300, amt: 2400},{name: '04', uv: 450, pv: 250, amt: 2400}];
-
-  // const [data, setData]=React.useState({})
-  // setData({data:{
-  //   labels:["1","2","3","4","5"],
-  //   datasets:[
-  //     {
-  //       label:"Match Graph",
-  //       backkgroundColor:"rgba(255,0,255,0.75)",
-  //       data:[4,5,10,1,32,2,12]
-  //     }
-  //   ]
-  // }})
-
-  return (
-    <div>
-      <Line
-        options={{
-          responsive: true,
-          radius: 5,
-        }}
-        data={{
-          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+  const dataForWon = (canvas) => {
+    const ctx = canvas.getContext("2d")
+    const gradient = ctx.createLinearGradient(0,0,0,400)
+    // gradient.addColorStop(0, 'rgba(58,123,213,1)');
+    gradient.addColorStop(0, '#05ff00');
+    // gradient.addColorStop(0, 'black');
+    // gradient.addColorStop(0, 'black');
+    // gradient.addColorStop(0, 'black');
+    gradient.addColorStop(1, 'rgba(0,210,255,0.3)');
+      return {
+        
+          labels,
           datasets: [
             {
-              label: "# of Votes",
-              data: [12, 19, 3, 5, 2, 3],
+              label: "Number Of wins",
+              data: dataWon,
+
               fill: true,
-              backgroundColor: ["rgba(255, 99, 132, 0.2)"],
+              backgroundColor: gradient,
               borderColor: [
-                "rgba(255, 99, 132, 1)",
-                "rgba(54, 162, 235, 1)",
-                "rgba(255, 206, 86, 1)",
-                "rgba(75, 192, 192, 1)",
-                "rgba(153, 102, 255, 1)",
-                "rgba(255, 159, 64, 1)",
+               "#05ff00"
               ],
               borderWidth: 1,
             },
           ],
-        }}
-      />
-      {/* <div style={{display:"flex",justifyContent:"space-between"}}>
-            <div style={{border:"4px solid whiteSmoke", padding:10, borderRadius:10}}>
+          
+         
+      }
+    }
 
-    <LineChart width={280} height={200} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-    <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-    <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-    <XAxis dataKey="name" />
-    <YAxis />
-    <Tooltip />
-  </LineChart>
-        </div>
+    const dataForLoss = (canvas) => {
+      const ctx = canvas.getContext("2d")
+      const gradient = ctx.createLinearGradient(0,0,0,400)
+      // gradient.addColorStop(0, 'rgba(58,123,213,1)');
+      gradient.addColorStop(0, '#ff0000');
+      // gradient.addColorStop(0, 'black');
+      // gradient.addColorStop(0, 'black');
+      // gradient.addColorStop(0, 'black');
+      gradient.addColorStop(1, '#fff');
+        return {
+          
+            labels,
+            datasets: [
+              {
+                label: "Number Of loss",
+                data: dataLost,
+  
+                fill: true,
+                backgroundColor: gradient,
+                borderColor: [
+                 "#ff0000"
+                ],
+                borderWidth: 1,
+              },
+            ],
+            
+           
+        }
+      }
 
-        <div style={{border:"4px solid whiteSmoke", padding:10, borderRadius:10}}>
-        <BarChart width={280} height={200} data={data}>
-    <XAxis dataKey="name" stroke="#8884d8" />
-    <YAxis />
-    <Tooltip />
-    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-    <Bar dataKey="uv" fill="#8884d8" barSize={30} />
-  </BarChart>
-
-
-
-
-        </div>
-
-        </div>
-        <div> */}
-      {/* <TableContainer component={Paper} sx={{p:10}}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer> */}
-      {/* </div> */}
+  return (
+    <>
+      <div style={{display:"flex",justifyContent:"flex-end"}}>
+      <Box sx={{ minWidth: 200,marginBottom:3}}>
+      <FormControl fullWidth>
+        {/* <InputLabel id="demo-simple-select-label">Month</InputLabel> */}
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={filter}
+          label="Month"
+          onChange={handleChange}
+        >
+          <MenuItem value="month">Monthly</MenuItem>
+          <MenuItem value="week">Weekly</MenuItem>
+          
+        </Select>
+      </FormControl>
+    </Box>
     </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row !important",
+          justifyContent: "space-between",
+        }}
+      >
+        <div style={{ width: 450,border:"2px solid whitesmoke",padding:"0px 5px" }}>
+          <Line
+            options={{
+              responsive: true,
+              radius: 3,
+              hoverRadius: 7,
+              tension: 0.5,
+              scales: {
+                x: {
+                    grid:{
+                     display:false
+                         }
+                   },
+                y: 
+                   {
+                 grid:{
+                  display:false
+                      }
+                   }
+                       }
+            }}
+            data={dataForWon}
+          />
+        </div>
+        <div style={{ width: 450,border:"2px solid whitesmoke",padding:"0px 5px" }}>
+          <Line
+            options={{
+              responsive: true,
+              radius: 3,
+              hoverRadius: 7,
+              tension: 0.5,
+              scales: {
+                x: {
+                    grid:{
+                     display:false
+                         }
+                   },
+                y: 
+                   {
+                 grid:{
+                  display:false
+                      }
+                   }
+                       }
+            }}
+            data={dataForLoss}
+          />
+        </div>
+      </div>
+    </>
   );
 }
 
