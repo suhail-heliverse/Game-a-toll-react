@@ -14,6 +14,7 @@ import Logout from '@mui/icons-material/Logout';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Toolbar from "@mui/material/Toolbar";
 import {UserDashboard, Profile} from "../index";
+import { useHistory } from 'react-router';
 
 
 export default function UserHeader() {
@@ -21,7 +22,7 @@ export default function UserHeader() {
   const [openDashboard,setOpenDashboard]=React.useState(true);
   const [openProfile, setOpenProfile]=React.useState(false);
   const [userAmount, setUserAmount]=React.useState(0);
-  
+  const router = useHistory();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
       console.log("this is more icon status")
@@ -33,7 +34,10 @@ export default function UserHeader() {
     setAnchorEl(null);
   };
 
-
+  const logout = ()=>{
+    localStorage.clear();
+    router.push('/')
+  }
 
 
 
@@ -46,7 +50,7 @@ export default function UserHeader() {
       <Avatar sx={{ width: 32, height: 32,margin:2 }}>M</Avatar>
 
         <div style={{display:"flex",flexDirection:"column",marginRight:37}}> 
-          <div style={{margin:2}}>Faizan pasha</div>
+          <div style={{margin:2}}>{JSON.parse(localStorage.user).username}</div>
          <div style={{margin:2}}>Amount: $ {userAmount}</div>
         </div>
 
@@ -115,7 +119,7 @@ export default function UserHeader() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={logout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

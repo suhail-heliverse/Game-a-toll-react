@@ -26,6 +26,7 @@
 }
 
 .user_heading{
+    cursor: pointer;
     height: 100px;
     background-color: rgb(233, 233, 233);
     display: flex;

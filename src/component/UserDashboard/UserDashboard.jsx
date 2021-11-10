@@ -16,12 +16,14 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import { History } from "../index";
 import { fetchData } from "../../middleware/RequestHandler";
+import { Router, useHistory } from "react-router";
 
 // import  {FaPencil}  from "react-icons/fa";
 
 function UserDashboard(props) {
   const [userHistoryData, setUserHistoryData] = React.useState([]);
   const [userAmount,setUserAmount] = React.useState(0);
+  const router = useHistory()
   React.useEffect(async () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -42,7 +44,7 @@ function UserDashboard(props) {
     <div>
       <div className="user_dashboard_wrapper">
         <div className="user_dashboard">
-          <div className="user_heading">
+          <div className="user_heading" onClick={()=>{router.push('/')}}>
             <h1>Game A Toll</h1>
           </div>
           <div

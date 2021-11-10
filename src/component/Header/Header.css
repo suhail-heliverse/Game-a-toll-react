@@ -80,7 +80,9 @@
   }
 
 }
-
+.company-logo {
+  cursor: pointer;
+}
 @media (max-width: 1023px) {
   .sub-header-item div {
     margin-left: 50px;

@@ -81,6 +81,7 @@ function Banner() {
             setLoginPopup(false);
             setShowRegister(false);
           }}
+          loggedIn={()=>{window.location.reload()}}
         />
       )}
       {showRegister && (

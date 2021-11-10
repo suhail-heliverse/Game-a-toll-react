@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router';
 import { Header } from '..';
 import { fetchData } from '../../middleware/RequestHandler';
 import LeaderTable from '../LeaderTable/LeaderTable';
@@ -10,6 +12,13 @@ function Leaderboard() {
     const [currentGame,setCurrentGame] = useState({});
     const [leaderboard,setLeaderboard] = useState([]);
     const [topGainers,setTopGainers] = useState([]);
+    const router = useHistory()
+    useEffect(async()=>{
+        const response = await (await fetch('http://localhost:8080/verifyUser',{method:"GET",headers:{'Authorization':localStorage.accessToken}})).json();
+    if(response.message == "Unauthorized") {
+      router.push('/')
+    }
+    },[])
 
     useEffect(async()=>{
         const response = await fetchData("/games", { method: "GET" });
