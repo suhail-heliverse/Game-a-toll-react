@@ -1,5 +1,5 @@
-const proxy = 'http://localhost:8080';
-// const proxy ="https://gamingatoll.com"
+// const proxy = 'http://localhost:8080';
+const proxy ="https://gamingatoll.com"
 export async function fetchData(path,requestOptions) {
     let response;
     

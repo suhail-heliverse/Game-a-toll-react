@@ -14,8 +14,8 @@ import { Route, Switch } from "react-router-dom";
 import { AdminView } from "..";
 
 const API_ENDPOINT = 
-// "https://gamingatoll.com";
-"http://localhost:8080";
+"https://gamingatoll.com";
+// "http://localhost:8080";
 
 function Login({showSignup, closeHandler,loggedIn}) {
 

@@ -35,8 +35,8 @@ function Header() {
   const headerRef = useRef(null);
   const open = Boolean(anchorEl);
   const API_ENDPOINT =
-    // "https://gamingatoll.com";
-    "http://localhost:8080";
+    "https://gamingatoll.com";
+    // "http://localhost:8080";
 
   // const sideBarRef = useRef();
   const handleClose = () => {
@@ -57,7 +57,7 @@ function Header() {
 
   useEffect(async () => {
     const response = await (
-      await fetch("http://localhost:8080/verifyUser", {
+      await fetch("https://gamingatoll.com/verifyUser", {
         method: "GET",
         headers: { Authorization: localStorage.accessToken },
       })

@@ -22,7 +22,7 @@ export default function AdminView() {
   const router = useHistory();
 
   useEffect(async()=>{
-    const response = await (await fetch('http://localhost:8080/verifyAdmin',{method:"GET",headers:{'Authorization':localStorage.accessToken}})).json();
+    const response = await (await fetch('https://gamingatoll.com/verifyAdmin',{method:"GET",headers:{'Authorization':localStorage.accessToken}})).json();
     if(response.message == "Unauthorized") {
       router.push('/')
     }

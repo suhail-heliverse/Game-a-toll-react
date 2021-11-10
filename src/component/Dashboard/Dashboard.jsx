@@ -5,7 +5,7 @@ function Dashboard(){
   const [verifyUser,setVerifyUser] = React.useState(false);
   const router = useHistory();
   React.useEffect(async()=>{
-      const response = await (await fetch('http://localhost:8080/verifyUser',{method:"GET",headers:{'Authorization':localStorage.accessToken}})).json();
+      const response = await (await fetch('https://gamingatoll.com/verifyUser',{method:"GET",headers:{'Authorization':localStorage.accessToken}})).json();
   if(response.message == "Unauthorized") {
     router.push('/')
   } else {

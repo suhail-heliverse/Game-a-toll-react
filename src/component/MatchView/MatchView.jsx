@@ -22,8 +22,8 @@ export default function MatchView() {
   
   const router = useHistory();
   useEffect(async ()=>{
-    // const socket = io('https://gamingatoll.com',{path:'/socket.io'});
-    const socket = io('http://localhost:8080',{path:'/socket.io'});
+    const socket = io('https://gamingatoll.com',{path:'/socket.io'});
+    // const socket = io('http://localhost:8080',{path:'/socket.io'});
     socket.emit('join',{userId: JSON.parse(localStorage.user).id});
 
     

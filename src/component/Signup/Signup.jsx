@@ -7,8 +7,8 @@ import axios from "axios";
 
 
 const API_ENDPOINT=
-// "https://gamingatoll.com"
-"http://localhost:8080";
+"https://gamingatoll.com"
+// "http://localhost:8080";
 
 function Signup({ showLogin, closeHandler }) {
   const [email, setEmail] = useState();
