@@ -2,7 +2,20 @@
   width: 60%;
   margin: auto;
   
+  
   padding: 0px 40px;
+}
+.collapsed {
+  color: white;
+}
+
+.accordion-item{
+  /* border: 2px solid whitesmoke; */
+  /* border-radius: 20px; */
+ 
+}
+.accordion-button::after {
+  background-image: url("../../assests/images/plus.png")
 }
 @media (max-width: 425px) {
   .container_faq {
