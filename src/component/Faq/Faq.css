@@ -9,13 +9,14 @@
   color: white;
 }
 
-.accordion-item{
-  /* border: 2px solid whitesmoke; */
-  /* border-radius: 20px; */
+.accordion-item:hover{
+  border: 2px solid whitesmoke;;
+  border-radius: 20px;
  
 }
 .accordion-button::after {
-  background-image: url("../../assests/images/plus.png")
+  background-image: url("../../assests/images/plus.png");
+  height: 34px;
 }
 @media (max-width: 425px) {
   .container_faq {
